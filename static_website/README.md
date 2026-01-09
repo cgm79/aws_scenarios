@@ -12,11 +12,10 @@ If you do not have an active free tier account, then this scenario **may** incur
 
 * Deploy a single EC2 instance with a public IP address
 * Deploy a second EC2 instance with another public IP address
-* Deploy an DNS Alias record in Route53
-* Deploy a load balancer
-* Configure ELB health checks
+* Deploy a load balancer with a target group
 * Create an auto-scaling group
 * Change the load balancer to multi-AZ
+
 
 ## Deploy a single EC2 instance with a public IP address
 
@@ -45,3 +44,46 @@ Include the following in the "User data" section to install and enable Apache2, 
   * Click **Launch instance**
   
 </details>
+
+
+## Deploy a second EC2 instance with another public IP address
+
+Your application is getting popular!  Create a second instance which has the exact same output.  You could call it "WebServer2".
+
+You can use the steps on the previous step to create the second instance.
+
+
+## Deploy a load balancer with a target group
+
+Unfortunately, now there are two exact copies of your instance which are accessible from two different public IP addresses.
+It would be much better for the users if both instances were accessible from a single IP address.
+Also, you can only have five public IPs per region per account, so you cannot scale this was indefinitely.
+
+Create a new Load Balancer using a new Target Group which has all of your EC2 instances.
+
+<details>
+  <summary>I need help ...</summary>
+  
+  * In the EC2 Console, click **Load Balancers** in the left menu
+  * In the **Application Load Balancer** box, click **Create**
+  * Ensure that your Security Group allows **HTTP** access from **0.0.0.0/0**
+  * Click **Create target group** (this will open another window)
+  * Provide a Target Group name (e.g. "WebTargetGroup")
+  * Click **Next**
+  * Select all of your WebServer instances and click **Include as pending below**
+  * Click **Next**
+  * Click **Create target group**
+  * In your Load Balancer create window, click the target group refresh button and then select your new target group
+  * Click **Create load balancer**
+
+Your new load balancer will have a custom DNS name assigned.  Use this to access either instance - refreshing that page should flip between the two instances.
+
+</details>
+
+## Create an auto-scaling group
+
+This is useful, but what if we need to add a third instance?  Or a tenth?
+We want our application to automatically spin up new EC2 instances as needed.
+
+Create an auto-scaling group so that new instances can be created or removed as needed based on demand.
+
