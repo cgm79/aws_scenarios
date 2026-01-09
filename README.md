@@ -12,4 +12,4 @@ One important note is that these scenarios will **rarely** include any actual co
 
 ### Basic
 
-(Static website)[https://cgm79.github.io/aws_scenarios/static_website/]
+[Static website](https://cgm79.github.io/aws_scenarios/static_website/)
