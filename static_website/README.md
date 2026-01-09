@@ -22,9 +22,8 @@ If you do not have an active free tier account, then this scenario **may** incur
 
 If you want a simple website, you can simply deploy an EC2 instance with a public IP address.
 
-Under Advanced Details, include this in the "User data" section to create a very simple webpage:
+Include the following in the "User data" section to install and enable Apache2, and to create a very basic webpage on your instance:
 
-    ```
     #!/bin/bash
     # Use this for your user data (script from top to bottom)
     # install httpd (Linux 2 version)
@@ -33,16 +32,16 @@ Under Advanced Details, include this in the "User data" section to create a very
     systemctl start httpd
     systemctl enable httpd
     echo "<h1>Hello World from $(hostname -f)</h1>" > /var/www/html/index.html
-    ```
 
 <details>
-  <summary>Help!</summary>
+  <summary>I need help ...</summary>
   
-  * In the EC2 Console, click "Launch instances"
-  * Provide a name
-  * This scenario is fine with a micro Amazon Linux instance
-  * Ensure your Security Group allows HTTP access from 0.0.0.0/0
-  * Expand the Advanced Details section
-  * Add the commands above to auto-install and enable Apache2, and set a very basic index.html page
+  * In the EC2 Console, click **Launch instances**
+  * Provide a name (e.g. "WebServer1")
+  * This scenario is fine with a **micro Amazon Linux** instance
+  * Ensure that your Security Group allows **HTTP** access from **0.0.0.0/0**
+  * Expand the **Advanced Details** section
+  * Add the commands above to the **User Data** section
+  * Click **Launch instance**
   
 </details>
