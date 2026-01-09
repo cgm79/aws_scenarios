@@ -19,9 +19,9 @@ If you do not have an active free tier account, then this scenario **may** incur
 
 ## Deploy a single EC2 instance with a public IP address
 
-If you want a simple website, you can simply deploy an EC2 instance with a public IP address.
-
-Include the following in the "User data" section to install and enable Apache2, and to create a very basic webpage on your instance:
+> If you want a simple website, you can simply deploy an EC2 instance with a public IP address.
+> 
+> Include the following in the "User data" section to install and enable Apache2, and to create a very basic webpage on your instance:
 
     #!/bin/bash
     # Use this for your user data (script from top to bottom)
@@ -48,18 +48,18 @@ Include the following in the "User data" section to install and enable Apache2, 
 
 ## Deploy a second EC2 instance with another public IP address
 
-Your application is getting popular!  Create a second instance which has the exact same output.  You could call it "WebServer2".
-
-You can use the steps on the previous step to create the second instance.
+> Create a second instance which has the exact same output.
+> Call it "WebServer2".
+> You can use the steps on the previous step to create the second instance.
 
 
 ## Deploy a load balancer with a target group
 
-Unfortunately, now there are two exact copies of your instance which are accessible from two different public IP addresses.
-It would be much better for the users if both instances were accessible from a single IP address.
-Also, you can only have five public IPs per region per account, so you cannot scale this was indefinitely.
+* Now there are two exact copies of your instance which are accessible from two different public IP addresses.
+* It would be much better for the users if both instances were accessible from a single IP address.
+* Also, you can only have five public IPs per region per account, so you cannot scale this was indefinitely.
 
-Create a new Load Balancer using a new Target Group which has all of your EC2 instances.
+> Create a new Load Balancer using a new Target Group which has all of your EC2 instances.
 
 <details>
   <summary>I need help ...</summary>
@@ -82,8 +82,8 @@ Your new load balancer will have a custom DNS name assigned.  Use this to access
 
 ## Create an auto-scaling group
 
-This is useful, but what if we need to add a third instance?  Or a tenth?
-We want our application to automatically spin up new EC2 instances as needed.
+* This is useful, but what if we need to add a third instance?  Or a tenth?
+* We want our application to automatically spin up new EC2 instances or remove unneeded instances when required.
 
-Create an auto-scaling group so that new instances can be created or removed as needed based on demand.
+> Create an auto-scaling group so that new instances can be created or removed as needed based on demand.
 
